@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/jquery.autocomplete.css" />
+        
+        <script type="text/javascript" src="js/function/favorite.js"></script>
+        <script type="text/javascript" src="js/function/filterSelection.js"></script>
+        <script type="text/javascript" src="js/function/filterFree.js"></script>
+        <script type="text/javascript" src="js/function/function.js"></script>
+        <script type="text/javascript" src="js/function/toastPlugin.js"></script>
+        
+        <title>Course Camel</title>
+    </head>
+    <body>
+        <div>
+            <div class="navbar navbar-default navbar-fixed-top app-header" role="navigation">
+                    <div class="app-header-title">
+                        <h2>Course <span>Camel</span></h2>
+                    </div>
+                    <div class="app-header-section">
+                        <ul id="tab" class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#tab1" data-toggle="tab">
+                                    <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;Search
+                                </a>
+                            </li>
+                            <li class=""><a href="#tab2" data-toggle="tab"><span class="glyphicon glyphicon-check"></span>Filter Search</a></li>
+                            <li class=""><a href="#tab3" data-toggle="tab" onClick="getData();return false; "><span class="glyphicon glyphicon-star"></span>Favourites</a></li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="tab-content app-tab-content" style="padding-top: 100px;">
+            <!-- First tab layout -->
+                <div class="tab-pane active in" id="tab1">
+                    <br />
+                    <table class="app-table-borderless">
+                        <tbody>
+                            <tr style='border-bottom: 2px solid #ddd'>
+                                <td>&nbsp;&nbsp;Search course/job</td>
+                                <td style="padding-bottom: 0 !important;"> <!-- colspan="2" -->
+                                    <div class="form-group">
+                                    	<input id="freeSearch" onkeyup="getFreeName();"/>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table>
+                    	<thead>
+                    		<tr style='border-bottom: 1px solid #ddd'>
+                    			<th class="autocompleteResult" colspan="2">&nbsp;Course</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody id="autocompleteResultCourse">
+                        </tbody>
+                    </table>
+                    <table>
+                    	<thead>
+                    		<tr>
+                    			<th class="autocompleteResult"  colspan="2">&nbsp;Jobs</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody id="autocompleteResultJobs">
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Second tab layout -->
+                <div class="tab-pane" id="tab2">
+                    <br />
+                    <table class="table app-table-borderless">
+                        <tbody>
+                            <tr onClick="selectInterest()"> 
+                                <td style="vertical-align:middle;">&nbsp;Interests:</td>
+                                <td colspan="2">
+                                	<input type="text" disabled="true" class="form-control" id="interests" value="">
+                                	
+                                    <!-- <a class="openBtn" data-toggle="modal"><input type="text" disabled="true" class="form-control" id="interests" >
+                                    </a> --> 
+                                </td>
+                             </tr> 
+                            <tr onClick="selectPrerequisite()">
+                                <td style="vertical-align:middle;">&nbsp;Prereqs:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="prereqs">
+                                </td>
+                            </tr>
+                            <tr onClick="selectLocation()">
+                                <td style="vertical-align:middle;">&nbsp;Location:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="location">
+                                </td>
+                            </tr>
+                            <tr onClick="selectAtar()">
+                                <td style="vertical-align:middle;">&nbsp;ATAR:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="atar">
+                                </td>
+                            </tr>
+                            <tr onClick="selectEducation()">
+                                <td style="vertical-align:middle;">&nbsp;Education provider:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="education">
+                                </td>
+                            </tr>
+                            <tr onClick="selectLength()">
+                                <td style="vertical-align:middle;">&nbsp;Length:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="length">
+                                </td>
+                            </tr>
+                            <tr onClick="selectQualification()">
+                                <td style="vertical-align:middle;">&nbsp;Type:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="qualifications">
+                                </td>
+                            </tr>
+                            <tr onClick="selectPartTime()">
+                                <td style="vertical-align:middle;">&nbsp;Part time:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="parttime">
+                                </td>
+                            </tr>
+                            <tr onClick="selectCSP()">
+                                <td style="vertical-align:middle;">&nbsp;CSP:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="csp">
+                                </td>
+                            </tr>
+                            <tr onClick="selectInternational()">
+                                <td style="vertical-align:middle;">&nbsp;International place:</td>
+                                <td colspan="2">
+                                    <input type="text" disabled="true" class="form-control" id="international">
+                                </td>
+                            </tr>
+							<!--<tr>
+                            	<td>
+                            		<input type="text" class="form-control" id="Buffer" value="">
+                            	</td>
+                        </tr> -->
+                            <tr>
+                                <td style="vertical-align:middle; text-align:center;" onClick="reset()">
+                                    <div class="btn-group open">
+                                        <button type="button" class="btn btn-default">RESET</button>
+                                    </div>
+                                </td>
+                                <td style="vertical-align:middle; text-align:center;" onClick="searchFilterJobs();return false;" >
+                                	<a href="#tab3" data-toggle="tab">
+	                                    <button type="button" class="btn btn-primary">
+	                                        <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;JOBS
+	                                    </button>
+                                    </a>
+                                </td>
+                                <td style="vertical-align:middle; text-align:center;" onClick="searchFilterCourses();return false;">
+                                    <a href="#tab3"  data-toggle="tab"> 
+                                    	<button type="button" class="btn btn-primary">
+                                        <span class="glyphicon glyphicon-search"></span>&nbsp;&nbsp;COURSES
+                                    	</button>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Third tab layout -->
+                <div class="tab-pane" id="tab3">
+                    <br />
+                    <!--  <table class="table table-condensed app-table-favourites">-->
+                    <table class="table table-condensed app-table-searchresults">
+                    	<thead>
+                    		<tr>
+                    			<th id="favorite-result-count-id"></th>
+                    		</tr>
+                    	</thead>
+                    	<tbody id="favorite-table-id">
+                        </tbody>
+                    </table>
+                </div>                
+                <!-- Modal -->
+                <div class="modal fade" id="myAnotherModal" tabindex="-1" role="dialog" aria-labelledby="myAnotherModalLabel" aria-hidden="true">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header app-modal-header">
+                        <h4 class="modal-title" id="modal-title"></h4>
+                      </div>
+                      <div class="modal-body app-modal-body" id="modal-body">
+                      </div>
+                      <div class="modal-footer app-modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+                      </div>
+                    </div>
+                  </div>
+                </div><!-- /.modal -->
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript" charset="utf-8" src="SQLitePlugin.js"></script>
+        
+        <script type="text/javascript" src="js/vendor/jquery-1.10.2.js"></script>
+        <script type="text/javascript" src="js/vendor/bootstrap.js"></script>
+        <script type="text/javascript" src="js/vendor/bootstrap-modal.js"></script>
+        <script type="text/javascript" src="js/vendor/handlebars-v1.1.2.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.autocomplete.min.js"></script>
+        <script type="text/javascript" src="js/vendor/jquery.autocomplete.js"></script>
+        <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script type="text/javascript" href="http://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css"></script>-->
+
+        <script id="entry-template" type="text/x-handlebars-template">
+          template content
+        </script>
+        
+        <script type="text/javascript">
+            app.initialize();
+            
+            var frameSrc  = "test.html";
+            var frameSrc1 = "test_1.html";
+
+            $('.openBtn').on('click', function() {
+                $('#myModal').on('show', function() {
+                    $('iframe').attr("src", frameSrc);
+                    $(this).find('.modal-body').css({
+                        width:'auto',
+                        height:'auto', 
+                        'max-height':'100%'
+                    });
+                });
+                    
+                $('#myModal').modal({ 
+                    show: true 
+                });
+                
+            });
+            
+            $('a.app-table-searchresults-link').on('click', function() {
+                $('#myAnotherModal').modal({
+                    show: true
+                });
+            });
+            
+		function addJavascript(jsname,pos) {
+			var th = document.getElementsByTagName(pos)[0];
+			var s = document.createElement('script');
+			s.setAttribute('type','text/javascript');
+			s.setAttribute('src',jsname);
+			th.appendChild(s);
+		}
+		/*var availableTags = ["ActionScript","AppleScript","ASP","Basic"];
+		$("#freeSearch").autocomplete ({
+			data: availableTags,
+			onSelect: getFreeName(Name.value)
+		});*/
+		
+	    /*var autocomplete1 = new Array(<? echo implode(',', get_job()); ?>);
+	    for (var i=0;i<autocomplete1.length;i++){
+	       autocomplete1[i] =  { label: autocomplete1[i], category: "Job"};
+	    }
+	    var autocomplete2 = new Array(<? echo implode(',', get_course()); ?>);
+	    for (var i=0;i<autocomplete2.length;i++){
+	       autocomplete2[i] =  { label: autocomplete2[i], category: "Course"};
+	    }
+	    var autocomplete = autocomplete1.concat(autocomplete2);
+	    $('#freeSearch').catcomplete({ source: function(request, response) {
+	    var re = $.ui.autocomplete.escapeRegex(request.term);
+	    var matcher = new RegExp( "^" + re, "i" );
+	    var a = $.grep( autocomplete, function(item,index){
+	         var value = item.label;
+	         return matcher.test(value);
+	    });
+	        response( a.slice(0,10) );
+	    }, minLength: 3, select: function(event, ui) { }});*/
+    
+        </script>
+    </body>
+</html>

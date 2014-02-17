@@ -1,0 +1,71 @@
+.app-header {
+    text-align: center;
+    background-color:black;
+    color: white;
+    border-bottom-width: 0px;
+}
+
+.app-header-title {
+    
+}
+
+.app-header-title span {
+    color: #ff9933;   
+}
+
+
+app-tab-content {
+
+}
+
+table {
+    width: 100%;
+}
+
+td {
+   font-size: 22px; 
+}
+
+table.app-table-borderless td {
+    border: 0 !important;
+    vertical-align: baseline;
+}
+
+table.app-table-favourites td {
+    border-bottom: 1px solid #ddd;
+}
+
+.app-modal-header {
+    padding-bottom: 8px;
+    padding-top: 8px;
+}
+
+.app-modal-footer {
+    padding-bottom: 2px;
+    padding-top: 2px;
+    margin-top: 0px;
+}
+
+.app-modal-body {
+    padding-top: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-bottom: 5px;
+    height: '390px';
+}
+
+.app-modal {
+    
+}
+
+.app-modal-dialog {
+
+}
+
+.app-modal-content {
+
+}
+
+.autocompleteResult {
+    font-weight: bold; font-size: 24px; color: blue;
+}
